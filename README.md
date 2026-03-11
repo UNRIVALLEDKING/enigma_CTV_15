@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌌 Enigma: FutureTwin
 
-## Getting Started
+**Live Simulation**: [https://enigma-timetraveller.vercel.app/](https://enigma-timetraveller.vercel.app/)
 
-First, run the development server:
+Enigma is a futuristic, AI-powered life exploration platform designed for the **Vibe Coding Event (March 11th)**. It allows users to bridge the gap between today and 2035, offering an immersive look at their potential future selves through advanced AI simulations and temporal forecasting.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 🔹 Meet Your Future Self (Neural Chat)
+Connect with a persistent AI persona of yourself in 2035. The chat uses **Local Neural Sync**, loading history instantly from your local cache while staying synchronized with the cloud (MongoDB).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔹 Temporal Timelines
+Visualize the major milestones of your potential next decade. An alternating, node-based visual timeline that adapts based on your career goals and personal aspirations.
 
-## Learn More
+### 🔹 Decision Matrix (Neural History)
+Weigh critical life choices by collapsing wavefunctions of reality. Compare "Path Alpha" vs "Path Beta" and revisit all past simulations through the **Neural History** archive.
 
-To learn more about Next.js, take a look at the following resources:
+### 🔹 Skill Roadmap
+A comprehensive growth pathway for the next 10 years. Categorized by "Core Evolution" and "Emerging Specialties," tailored to the AI-first economy of 2035.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔹 Goal Hurdles (Risk Mitigation)
+A predictive scan of potential obstacles. Identify high-risk "Temporal Interference" patterns in your path and receive strategic mitigation protocols to stay on track.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🔹 Deep Persistence & Persona Archive
+Manage multiple life paths through the **Persona Archive**. Every simulation, skill map, and timeline is cached locally per-persona, ensuring zero-latency transitions and optimized token usage.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Core**: Next.js 15 (App Router), React 19
+- **Runtime**: Bun (Optimized for speed)
+- **Styling**: TailwindCSS & Lucide React Icons
+- **Animations**: Framer Motion (Glassmorphism & Particle Effects)
+- **AI Engine**: Google Gemini AI SDK (Resilient fallback chain: Gemini 2.5/3.1 + Gemma 3)
+- **Database**: MongoDB (Secondary persistence)
+- **State**: Deep `localStorage` Residency
+
+---
+
+## 🚀 Local Setup
+
+To run Enigma locally using **Bun**:
+
+1.  **Clone the Repository**
+2.  **Configure Environment Variables**
+    Create a `.env` file in the root directory:
+    ```env
+    GEMINI_API_KEY=your_google_ai_key
+    MONGODB_URI=your_mongodb_connection_string
+    ```
+3.  **Install Dependencies**
+    ```bash
+    bun install
+    ```
+4.  **Launch Temporal Link**
+    ```bash
+    bun dev
+    ```
+    Access the portal at `http://localhost:3000`.
+
+---
+
+## 👥 The Ensemble
+Developed for the **Vibe Coding Event** (March 11, 2026).
+
+- **Team**: [Your Team Name]
+- **Focus**: AI Resilience & User Persistence
+
+---
+
+*“The future is not a destination, but a series of collapsed possibilities. Choose wisely.”*

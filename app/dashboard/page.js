@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { User, Map, Cpu, Zap, Archive } from "lucide-react";
+import { User, Map, Cpu, Zap, Archive, AlertTriangle } from "lucide-react";
 
 export default function DashboardPage() {
   const cards = [
@@ -35,6 +35,13 @@ export default function DashboardPage() {
       color: "from-green-500/20 to-emerald-500/20",
     },
     {
+      title: "Goal Hurdles",
+      description: "Identify potential obstacles and security risks in your path.",
+      icon: <AlertTriangle className="h-8 w-8 text-yellow-500" />,
+      href: "/hurdles",
+      color: "from-yellow-500/20 to-orange-500/20",
+    },
+    {
       title: "Persona Archive",
       description: "Manage and switch between your saved future personas.",
       icon: <Archive className="h-8 w-8 text-white/50" />,
@@ -58,7 +65,7 @@ export default function DashboardPage() {
         </p>
       </motion.div>
 
-      <div className="grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="grid w-full max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {cards.map((card, idx) => (
           <motion.div
             key={card.title}
