@@ -1,65 +1,117 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Lock, User, ShieldCheck, Eye, EyeOff, Copy, Check } from "lucide-react";
+import WelcomeScreen from "@/components/WelcomeScreen";
 
 export default function Home() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const auth = localStorage.getItem("futureTwinAuth");
+    if (auth === "true") setIsLoggedIn(true);
+  }, []);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (username === "timetraveller" && password === "timetraveller") {
+      localStorage.setItem("futureTwinAuth", "true");
+      setIsLoggedIn(true);
+      setShowLogin(false);
+    } else {
+      setError("Invalid temporal credentials.");
+    }
+  };
+
+  const copyCreds = () => {
+    navigator.clipboard.writeText("timetraveller");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  if (isLoggedIn) {
+    return <WelcomeScreen />;
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex min-h-screen flex-col items-center justify-center px-4 relative">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="glass futuristic-glow w-full max-w-md rounded-3xl p-10 text-center"
+      >
+        <div className="mb-8 inline-flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 border border-primary/20">
+          <ShieldCheck className="h-10 w-10 text-primary" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        <h1 className="neon-text mb-2 text-3xl font-bold">FutureTwin Terminal</h1>
+        <p className="mb-10 text-sm text-white/40 uppercase tracking-widest text-[10px]">Access Restricted to Authorized Personnel</p>
+
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div className="relative">
+            <User className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/30" />
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white focus:border-primary focus:outline-none"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+          <div className="relative">
+            <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/30" />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-12 text-white focus:border-primary focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors"
+            >
+              {showPassword ? (
+                <EyeOff className="h-5 w-5" />
+              ) : (
+                <Eye className="h-5 w-5" />
+              )}
+            </button>
+          </div>
+
+          {error && <p className="text-sm text-red-400 font-medium">{error}</p>}
+
+          <button
+            type="submit"
+            className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-primary py-4 font-bold text-black transition-all hover:scale-[1.02] hover:bg-white active:scale-95"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
+            Initiate Link
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </button>
+        </form>
+
+        <button
+          onClick={copyCreds}
+          className="mt-8 group flex items-center justify-center gap-2 w-full py-2 px-4 rounded-xl hover:bg-white/5 transition-all outline-none"
+        >
+          <div className="text-[10px] text-white/20 tracking-[0.2em] group-hover:text-primary transition-colors uppercase">
+            {copied ? "Access Codes Copied" : "Demo: timetraveller / timetraveller"}
+          </div>
+          {copied ? (
+            <Check className="h-3 w-3 text-primary animate-in fade-in scale-in" />
+          ) : (
+            <Copy className="h-3 w-3 text-white/20 group-hover:text-primary transition-colors" />
+          )}
+        </button>
+      </motion.div>
     </div>
   );
 }
