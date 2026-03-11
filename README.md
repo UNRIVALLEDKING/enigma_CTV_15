@@ -64,9 +64,10 @@ To run Enigma locally using **Bun**:
 ---
 
 ## 👥 The Ensemble
-Developed for the **Vibe Coding Event** (March 11, 2026).
+Developed for the **Compile The Vibe** (March 11, 2026).
 
-- **Team**: [Your Team Name]
+- **Team**: UNRIVALLED
+- **Team Leader**: Aditya Kumar
 - **Focus**: AI Resilience & User Persistence
 
 ---
